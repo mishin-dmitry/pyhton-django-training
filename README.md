@@ -1,1 +1,1 @@
-# pyhton-django-training
+# python-django-training
