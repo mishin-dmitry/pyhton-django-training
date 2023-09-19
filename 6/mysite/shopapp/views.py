@@ -1,8 +1,11 @@
+from typing import Any
+
 from django.contrib.auth.models import Group
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
+from django.views.generic import TemplateView
 
 from shopapp.forms import ProductForm
 
@@ -36,10 +39,20 @@ class GroupsListView(View):
 #     return render(request, "shopapp/groups-list.html", context=context)
 
 
-def products_list(request: HttpRequest):
-    context = {"products": Product.objects.all()}
+# def products_list(request: HttpRequest):
+#     context = {"products": Product.objects.all()}
 
-    return render(request, "shopapp/products-list.html", context=context)
+#     return render(request, "shopapp/products-list.html", context=context)
+
+
+class ProductsListView(TemplateView):
+    template_name = "shopapp/products-list.html"
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["products"] = Product.objects.all()
+
+        return context
 
 
 def orders_list(request: HttpRequest):
