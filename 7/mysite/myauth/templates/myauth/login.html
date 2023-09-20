@@ -1,0 +1,30 @@
+{% extends "myauth/base.html" %}
+
+{% block body %}
+  Login
+{% endblock body %}
+
+{% block body %}
+  {{ form.as_p }}
+  {% comment %} <form  method="post">
+    {% csrf_token %}
+
+    {% if error %}
+      <p>
+        {{ error }}
+      </p>
+    {% endif %}
+
+    <p>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required>
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </p>
+
+  </form> {% endcomment %}
+  <button type="submit">Login</button>
+{% endblock body %}
